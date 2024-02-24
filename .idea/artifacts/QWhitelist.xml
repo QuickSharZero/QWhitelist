@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="QWhitelist">
+    <output-path>$PROJECT_DIR$/../../Plugins server/plugins</output-path>
+    <root id="archive" name="QWhitelist.jar">
+      <element id="module-output" name="QWhitelist" />
+    </root>
+  </artifact>
+</component>

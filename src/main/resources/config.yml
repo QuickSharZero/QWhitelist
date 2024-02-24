@@ -1,0 +1,37 @@
+version: 0.1
+
+#true - means that the plugin whitelist is enabled
+#false - means that the plugin whitelist is disabled
+enable: false
+
+#You can choose which database to use from the plugin or your own.
+#enable: false - means that the plugin will use its database created in the plugin folder
+#enable: true - means that the plugin will connect to your database, the connection parameters to which you specify below
+database:
+  enable: false
+  host: "hostname"
+  port: 3600
+  database_name: "database_name"
+  username: "username"
+  password: "password"
+
+messages:
+  ErrorMessages:
+    NoPerm: "&cYou do not have the permission to use this command"
+    PlayerAlready: "&cThis player is already on the white list"
+    PlayerNotSpec: "&cYou haven't specified a player"
+    NoPlayer: "&cThe specified player was not found"
+    DiscordNotSpec: "&cYou did not provide a Discord ID"
+    NoDiscord: "&cThis Discord ID is not in the database"
+    NewNickNotSpec: "&cYou did not specify a new player nickname"
+    NotWhitelist: "&cYou are not on the white list"
+
+  code:
+    sucOwnCode: "&aYour code: "
+    sucOtherCode: "&a%p code: "  # %p is the nickname of the player whose code you want to receive. (It only works here)
+
+  qwhitelist:
+    sucRemove: "&aThe player has been successfully removed from the white list"
+    sucAdd: "&aThe player has been successfully added to the whitelist"
+    sucUpdate: "&aNickname successfully changed"
+    sucReload: "&aConfig has been successfully updated"

@@ -1,0 +1,42 @@
+name: QWhitelist
+version: '0.1'
+main: ru.quickshar.QWhitelist
+api-version: '1.20'
+authors: [QuickShar]
+description: Whitelist plugin
+commands:
+  qwhitelist:
+    description: "Whitelist control"
+    permission: qwh.qwhitelist
+  code:
+    description: "Code command"
+    permission: qwh.code
+permissions:
+  qwh.qwhitelist.add:
+    description: Has permission to add player
+    default: false
+  qwh.qwhitelist.update:
+    description: Has permission to update player nickname
+    default: false
+  qwh.qwhitelist.remove:
+    description: Has permission to remove player from whitelist
+    default: false
+  qwh.code:
+    description: Has permission to get own code
+    default: true
+  qwh.code.admin:
+    description: Admin has permission to get player code
+    default: op
+  qwh.qwhitelist.reload:
+    description: Has permission to reload plugin config
+    default: op
+  qwh.*:
+    description: Gives access to all QWhitelist commands
+    default: op
+    children:
+      qwh.qwhitelist.add: true
+      qwh.qwhitelist.update: true
+      qwh.qwhitelist.remove: true
+      qwh.code: true
+      qwh.code.admin: true
+      qwh.qwhitelist.reload: true
