@@ -1,12 +1,13 @@
-version: 0.1
+version: 0.2
 
-#true - means that the plugin whitelist is enabled
-#false - means that the plugin whitelist is disabled
+# true - means that the plugin whitelist is enabled
+# false - means that the plugin whitelist is disabled
 enable: false
 
-#You can choose which database to use from the plugin or your own.
-#enable: false - means that the plugin will use its database created in the plugin folder
-#enable: true - means that the plugin will connect to your database, the connection parameters to which you specify below
+
+# You can choose which database to use from the plugin or your own.
+# enable: false - means that the plugin will use its database created in the plugin folder
+# enable: true - means that the plugin will connect to your database, the connection parameters to which you specify below
 database:
   enable: false
   host: "hostname"
@@ -14,6 +15,20 @@ database:
   database_name: "database_name"
   username: "username"
   password: "password"
+
+# Create a bot on the discord developer portal and paste its token
+# https://discord.com/developers/applications
+discordBot:
+  enabled: false
+  token: "YOUR TOKEN"
+
+discordBotEmbeds:
+  info:
+    title: "Hello"
+    description:
+      - "Hello"
+      - "hello"
+      - "hllo"
 
 messages:
   ErrorMessages:

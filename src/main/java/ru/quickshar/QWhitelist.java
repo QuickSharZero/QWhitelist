@@ -2,6 +2,8 @@ package ru.quickshar;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
+import ru.quickshar.bot.discordBot;
+import ru.quickshar.bot.discordBotEvents;
 import ru.quickshar.commands.getCodeCommand;
 import ru.quickshar.commands.qwhitelist;
 import ru.quickshar.database.Database;
@@ -48,9 +50,15 @@ public final class QWhitelist extends JavaPlugin {
 
         //Events
         Bukkit.getPluginManager().registerEvents(new join(), this);
+        Bukkit.getPluginManager().registerEvents(new discordBotEvents(), this);
         //Commands
         new qwhitelist();
         new getCodeCommand();
+
+        //DiscordBot
+        if(getInstance().getConfig().getBoolean("discordBot.enabled")){
+            discordBot.startDiscordBot();
+        }
 
         getLogger().info("=========================");
         getLogger().info("QWhitelist enabled!");
