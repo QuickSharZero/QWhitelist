@@ -8,8 +8,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 import ru.quickshar.QWhitelist;
 
 public class discordBotEvents implements Listener {
-    public discordBotEvents(){
-    }
 
     @EventHandler
     public void joinUpdateDiscordBotActivity(PlayerJoinEvent event){

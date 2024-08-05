@@ -24,11 +24,16 @@ discordBot:
 
 discordBotEmbeds:
   info:
-    title: "Hello"
+    title: "Title"
     description:
-      - "Hello"
-      - "hello"
-      - "hllo"
+      - "Nickname: {nickname}"
+      - ""
+      - "Version: your minecraft server version"
+      - "IP: your.server.ip"
+  play:
+    title: "Title"
+    description:
+      - "description"
 
 messages:
   ErrorMessages:

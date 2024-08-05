@@ -15,9 +15,6 @@ import java.util.Collections;
 public class discordBot {
     private static JDA jda;
 
-    public discordBot(){
-    }
-
     public static void startDiscordBot(){
         jda = JDABuilder.createDefault(getConfig().getString("discordBot.token"), Collections.emptyList())
                 .addEventListeners(new discordBotCommands())
@@ -42,6 +39,16 @@ public class discordBot {
             QWhitelist.getInstance().getLogger().info("DiscordBot LAUNCHED!");
         } catch(InterruptedException e){
             QWhitelist.getInstance().getLogger().warning("" + e);
+        }
+    }
+
+    public static void shutdownDiscordBot() {
+        jda.shutdown();
+        try{
+            jda.awaitShutdown();
+            QWhitelist.getInstance().getLogger().info("Discord Bot disabled.");
+        } catch (InterruptedException e){
+            e.printStackTrace();
         }
     }
 

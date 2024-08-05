@@ -1,5 +1,5 @@
 name: QWhitelist
-version: '0.1'
+version: '0.2'
 main: ru.quickshar.QWhitelist
 api-version: '1.20'
 authors: [QuickShar]

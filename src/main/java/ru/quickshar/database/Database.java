@@ -73,10 +73,10 @@ public class Database {
         statement.close();
     }
 
-    public void addPlayer(String nickname) throws SQLException{
+    public void addPlayer(String nickname, String discordID) throws SQLException{
         PreparedStatement statement = getConnection().prepareStatement("INSERT INTO whitelist(nickname, discord, code) VALUES (?, ?, ?)");
         statement.setString(1, nickname);
-        statement.setString(2, "Null");
+        statement.setString(2, discordID);
         statement.setInt(3, Util.generateCode());
         statement.executeUpdate();
         statement.close();
@@ -117,4 +117,12 @@ public class Database {
         return discordIds;
     }
 
+    public String getNicknameByDiscordID(String discordID) throws SQLException{
+        if(!checkDiscord(discordID)){ return "unknown"; }
+        PreparedStatement statement = getConnection().prepareStatement("SELECT nickname FROM whitelist WHERE discord = ?");
+        statement.setString(1, discordID);
+        ResultSet result = statement.executeQuery();
+        if(result.next()) { return result.getString("nickname"); }
+        return "unknown";
+    }
 }

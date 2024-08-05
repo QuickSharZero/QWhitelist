@@ -60,7 +60,7 @@ public class qwhitelist extends AbstractCommands {
                     sender.sendMessage(Util.getMessage("messages.ErrorMessages.PlayerAlready"));
                     return;
                 }
-                QWhitelist.getInstance().getDatabase().addPlayer(args[1]);
+                QWhitelist.getInstance().getDatabase().addPlayer(args[1], "Null");
                 sender.sendMessage(Util.getMessage("messages.qwhitelist.sucAdd"));
                 return;
             }catch(SQLException ex) { ex.printStackTrace(); }
