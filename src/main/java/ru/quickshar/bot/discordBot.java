@@ -29,7 +29,7 @@ public class discordBot {
         commands.addCommands(
                 Commands.slash("info", "Server info message"),
                 Commands.slash("play", "Add to whitelist")
-                        .addOption(OptionType.STRING, "nickname", "Your nickname", true)
+                        .addOption(OptionType.STRING, "nickname", "Your minecraft nickname", true)
         );
         commands.queue();
 

@@ -22,18 +22,33 @@ discordBot:
   enabled: false
   token: "YOUR TOKEN"
 
+# The variable {nickname} is replaced with the nickname of the player to whom the discord is linked,
+# otherwise it is replaced with "unknown".
 discordBotEmbeds:
   info:
-    title: "Title"
+    color: "#B2FF02" # HEX color only
+    title: "Server information"
     description:
       - "Nickname: {nickname}"
       - ""
       - "Version: your minecraft server version"
       - "IP: your.server.ip"
   play:
-    title: "Title"
+    color: "#B2FF02" # HEX color only
+    title: "Success"
     description:
-      - "description"
+      - "You have been successfully added to the whitelist."
+  playErrors:
+    discordAlreadyExists:
+      color: "#FF0000" # HEX color only
+      title: "Error"
+      description:
+        - "You already have a linked Minecraft nickname"
+    nicknameAlreadyExists:
+      color: "#FF0000" # HEX color only
+      title: "Error"
+      description:
+        - "The specified nickname is taken"
 
 messages:
   ErrorMessages:
