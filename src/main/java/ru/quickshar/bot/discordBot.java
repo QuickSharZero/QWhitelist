@@ -29,7 +29,9 @@ public class discordBot {
         commands.addCommands(
                 Commands.slash("info", "Server info message"),
                 Commands.slash("play", "Add to whitelist")
-                        .addOption(OptionType.STRING, "nickname", "Your minecraft nickname", true)
+                        .addOption(OptionType.STRING, "nickname", "Your minecraft nickname", true),
+                Commands.slash("code", "Link minecraft nickname")
+                        .addOption(OptionType.INTEGER, "code", "Your 6 digit code", true)
         );
         commands.queue();
 
@@ -53,7 +55,23 @@ public class discordBot {
     }
 
     public static void updateDiscordBotActivity(){
-        jda.getPresence().setActivity(Activity.watching("" + QWhitelist.getInstance().getServer().getOnlinePlayers().size()));
+        String activity = getConfig().getString("discordBot.activity");
+        String activityText = getConfig().getString("discordBot.activityText");
+        if(activity.equalsIgnoreCase("watching")){
+            jda.getPresence().setActivity(Activity.watching(activityReplacer(activityText)));
+        } else if (activity.equalsIgnoreCase("playing")) {
+            jda.getPresence().setActivity(Activity.playing(activityReplacer(activityText)));
+        } else if (activity.equalsIgnoreCase("nothing")) {
+            jda.getPresence().setActivity(null);
+        }
+        return;
+    }
+
+    private static String activityReplacer(String text){
+        if(text.contains("{online}")){
+            text = text.replace("{online}", "" + QWhitelist.getInstance().getServer().getOnlinePlayers().size());
+        }
+        return text;
     }
 
     private static FileConfiguration getConfig(){

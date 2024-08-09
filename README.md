@@ -3,14 +3,19 @@
 ## Plugin features:
 - In the plugin config you can configure the connection to your database. **(By default, the plugin connects to the database in the plugin folder.)**
 - The plugin stores all names in a database.
-- In the future, you can login to your server via discord. In the database, in addition to the name column, discord and code columns are created. *(A six-digit code is generated automatically for each added player)*
+- Your own discord bot which can be configured in the config file.
+- Full customization of activity and messages sent by the bot.
 ## Usage:
+``/qwhitelist`` - reload config and Discord bot activity.  
 ``/qwhitelist add <Nickname>`` - add a player to the white list.  
 ``/qwhitelist remove <Nickname>`` - remove a player from the white list.  
 ``/qwhitelist update <DiscordID>`` - update the nickname of the player linked to the specified DiscordID.  
 ``/code`` - find out your unique code.  
-``/code <Nickname>`` - find out the player code.
-
+``/code <Nickname>`` - find out the player code.  
+## Discord bot commands:
+``/play <nickname>`` - Adds the player's nickname to the whitelist and automatically binds it to the discord.  
+``/info`` - Display information about the server that you can specify in the config file.  
+``/code <code>`` - Link Discord to player's nickname. (If player was added with ``/qwhitelist add <nickname>`` command)
 ## Permissions:
 ``qwh.*`` - Gives access to all commands.  
 ``qwh.qwhitelist.reload`` - Access to reload the plugin config.  
@@ -26,14 +31,19 @@
 ## Особенности:
 - В конфиге плагина вы можете настроить подключение к вашей базе данных. **(По умолчанию плагин подключается к базе данных в папке плагина.)**
 - Плагин сохраняет все имена в базе данных.
-- В будущем вы можете сделать вход на сервер через Discord. В базе данных помимо столбца имени, создаются столбцы discordID и кода. *(Шестизначный код генерируется автоматически для каждого добавленного игрока)*
+- Ваш собственный Discord бот которого можно настроить в конфиг файле.
+- Полная настройка активнасти и сообщений отправляемых ботом.
 ## Использование:
+``/qwhitelist`` - обновить конфиг плагина и активность Discord бота.  
 ``/qwhitelist add <nickname>`` - добавить игрока в белый список.  
 ``/qwhitelist remove <nickname>`` - удалить игрока из белого списка.  
 ``/qwhitelist update <DiscordID>`` — обновить ник игрока, привязанный к указанному DiscordID.  
 ``/code`` - узнать свой уникальный код.  
 ``/code <nickname>`` - узнать код игрока.  
-
+## Команды Discord бота:
+``/play <nickname>`` - Добавляет ник игрока в белый список и автоматически привязывает его к дискорду.  
+``/info`` - Выводит информацию по серверу которую вы можете указать в конфиг файле.  
+``/code <code>`` - Связать дискорд с ником игрока. (Если игрок был добалвен при помощи команды ``/qwhitelist add <nickname>``)
 ## Разрешения:
 ``qwh.*`` - Предоставляет доступ ко всем командам.  
 ``qwh.qwhitelist.reload`` — Доступ для перезагрузки конфига плагина.  

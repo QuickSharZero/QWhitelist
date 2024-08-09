@@ -21,6 +21,11 @@ database:
 discordBot:
   enabled: false
   token: "YOUR TOKEN"
+  # Activity: "WATCHING", "PLAYING", "NOTHING"
+  # "NOTHING" - does not output anything
+  activity: "WATCHING"
+  # {online} displays online on the server
+  activityText: "{online}"
 
 # The variable {nickname} is replaced with the nickname of the player to whom the discord is linked,
 # otherwise it is replaced with "unknown".
@@ -38,28 +43,44 @@ discordBotEmbeds:
     title: "Success"
     description:
       - "You have been successfully added to the whitelist."
-  playErrors:
+  code:
+    color: "#B2FF02" # HEX color only
+    title: "Success"
+    description:
+      - "Nickname successfully linked."
+  errors:
     discordAlreadyExists:
       color: "#FF0000" # HEX color only
       title: "Error"
       description:
-        - "You already have a linked Minecraft nickname"
+        - "You already have a linked Minecraft nickname."
     nicknameAlreadyExists:
       color: "#FF0000" # HEX color only
       title: "Error"
       description:
-        - "The specified nickname is taken"
+        - "The specified nickname is taken."
+    codeNotExists:
+      color: "#FF0000" # HEX color only
+      title: "Error"
+      description:
+        - "The specified code is not in the database."
+    nicknameAlreadyLinked:
+      color: "#FF0000" # HEX color only
+      title: "Error"
+      description:
+        - "The nickname that this code belongs to is already linked to Discord."
+
 
 messages:
   ErrorMessages:
     NoPerm: "&cYou do not have the permission to use this command"
-    PlayerAlready: "&cThis player is already on the white list"
+    PlayerAlready: "&cThis player is already on the whitelist"
     PlayerNotSpec: "&cYou haven't specified a player"
     NoPlayer: "&cThe specified player was not found"
     DiscordNotSpec: "&cYou did not provide a Discord ID"
     NoDiscord: "&cThis Discord ID is not in the database"
     NewNickNotSpec: "&cYou did not specify a new player nickname"
-    NotWhitelist: "&cYou are not on the white list"
+    NotWhitelist: "&cYou are not on the whitelist"
 
   code:
     sucOwnCode: "&aYour code: "

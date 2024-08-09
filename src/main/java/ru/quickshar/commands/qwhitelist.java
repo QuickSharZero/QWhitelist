@@ -5,6 +5,7 @@ import org.bukkit.command.CommandSender;
 import ru.quickshar.QWhitelist;
 import ru.quickshar.Util;
 import ru.quickshar.abstr.AbstractCommands;
+import ru.quickshar.bot.discordBot;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -22,6 +23,11 @@ public class qwhitelist extends AbstractCommands {
                 return;
             }
             QWhitelist.getInstance().reloadConfig();
+
+            if(QWhitelist.getInstance().getConfig().getBoolean("discordBot.enabled")){
+                discordBot.updateDiscordBotActivity();
+            }
+
             sender.sendMessage(Util.getMessage("messages.qwhitelist.sucReload"));
             return;
         }

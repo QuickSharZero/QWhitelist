@@ -65,6 +65,31 @@ public class Database {
         return false;
     }
 
+    public boolean checkCode(Integer code) throws SQLException{
+        PreparedStatement statement = getConnection().prepareStatement("SELECT code FROM whitelist WHERE code = ?");
+        statement.setInt(1, code);
+        ResultSet result = statement.executeQuery();
+        if(result.next()){ statement.close(); return true; }
+        statement.close();
+        return false;
+    }
+
+    public boolean checkNicknameLinkedByCode(Integer code) throws SQLException{
+        PreparedStatement statement = getConnection().prepareStatement("SELECT * FROM whitelist WHERE code = ?");
+        statement.setInt(1, code);
+        ResultSet result = statement.executeQuery();
+        if(result.next()){
+            if(result.getString("discord").equalsIgnoreCase("null") | result.getString("discord").equalsIgnoreCase("")){
+                statement.close();
+                return false;
+            }
+            statement.close();
+            return true;
+        }
+        statement.close();
+        return false;
+    }
+
     public void updateNickname(String discord, String nickname) throws SQLException{
         PreparedStatement statement = getConnection().prepareStatement("UPDATE whitelist SET nickname = ? WHERE discord = ?");
         statement.setString(1, nickname);
@@ -93,8 +118,21 @@ public class Database {
         PreparedStatement statement = getConnection().prepareStatement("SELECT code FROM whitelist WHERE nickname = ?");
         statement.setString(1, nickname);
         ResultSet result = statement.executeQuery();
-        if(result.next()){ return result.getInt("code"); }
+        if(result.next()){
+            int code = result.getInt("code");
+            statement.close();
+            return code;
+        }
+        statement.close();
         return 0;
+    }
+
+    public void setDiscordIDByCode(Integer code, String discordID) throws SQLException{
+        PreparedStatement statement = getConnection().prepareStatement("UPDATE whitelist SET discord = ? WHERE code = ?");
+        statement.setString(1, discordID);
+        statement.setInt(2, code);
+        statement.executeUpdate();
+        statement.close();
     }
 
     public ArrayList<String> nicknamesList() throws SQLException{
@@ -104,6 +142,7 @@ public class Database {
         while(result.next()){
             nicknames.add(result.getString("nickname"));
         }
+        statement.close();
         return nicknames;
     }
 
@@ -114,6 +153,7 @@ public class Database {
         while(result.next()){
             discordIds.add(result.getString("discord"));
         }
+        statement.close();
         return discordIds;
     }
 
@@ -122,7 +162,12 @@ public class Database {
         PreparedStatement statement = getConnection().prepareStatement("SELECT nickname FROM whitelist WHERE discord = ?");
         statement.setString(1, discordID);
         ResultSet result = statement.executeQuery();
-        if(result.next()) { return result.getString("nickname"); }
+        if(result.next()) {
+            String nickname = result.getString("nickname");
+            statement.close();
+            return nickname;
+        }
+        statement.close();
         return "unknown";
     }
 }

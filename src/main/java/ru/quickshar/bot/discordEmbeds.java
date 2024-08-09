@@ -40,7 +40,7 @@ public class discordEmbeds {
         embed.setColor(color);
         for(String line : description){
             if(line.contains("{nickname}")){
-                line = line.replace("{nickname}", "" +nicknameReplace(senderID));
+                line = line.replace("{nickname}", nicknameReplace(senderID));
             }
             embed.appendDescription(line + "\n");
         }
@@ -48,11 +48,11 @@ public class discordEmbeds {
         return embed;
     }
 
-    public static EmbedBuilder playNicknameAlreadyExists(){
+    public static EmbedBuilder nicknameAlreadyExists(){
         EmbedBuilder embed = new EmbedBuilder();
-        String title = getConfig().getString("discordBotEmbeds.playErrors.nicknameAlreadyExists.title");
-        List<String> description = getConfig().getStringList("discordBotEmbeds.playErrors.nicknameAlreadyExists.description");
-        Color color = Color.decode(Objects.requireNonNull(getConfig().getString("discordBotEmbeds.playErrors.nicknameAlreadyExists.color")));
+        String title = getConfig().getString("discordBotEmbeds.errors.nicknameAlreadyExists.title");
+        List<String> description = getConfig().getStringList("discordBotEmbeds.errors.nicknameAlreadyExists.description");
+        Color color = Color.decode(Objects.requireNonNull(getConfig().getString("discordBotEmbeds.errors.nicknameAlreadyExists.color")));
 
         embed.setTitle(title);
         embed.setColor(color);
@@ -63,11 +63,56 @@ public class discordEmbeds {
         return embed;
     }
 
-    public static EmbedBuilder playDiscordAlreadyExists(){
+    public static EmbedBuilder discordAlreadyExists(){
         EmbedBuilder embed = new EmbedBuilder();
-        String title = getConfig().getString("discordBotEmbeds.playErrors.discordAlreadyExists.title");
-        List<String> description = getConfig().getStringList("discordBotEmbeds.playErrors.discordAlreadyExists.description");
-        Color color = Color.decode(Objects.requireNonNull(getConfig().getString("discordBotEmbeds.playErrors.discordAlreadyExists.color")));
+        String title = getConfig().getString("discordBotEmbeds.errors.discordAlreadyExists.title");
+        List<String> description = getConfig().getStringList("discordBotEmbeds.errors.discordAlreadyExists.description");
+        Color color = Color.decode(Objects.requireNonNull(getConfig().getString("discordBotEmbeds.errors.discordAlreadyExists.color")));
+
+        embed.setTitle(title);
+        embed.setColor(color);
+        for(String line : description){
+            embed.appendDescription(line + "\n");
+        }
+
+        return embed;
+    }
+
+    public static EmbedBuilder codeNotExists(){
+        EmbedBuilder embed = new EmbedBuilder();
+        String title = getConfig().getString("discordBotEmbeds.errors.codeNotExists.title");
+        List<String> description = getConfig().getStringList("discordBotEmbeds.errors.codeNotExists.description");
+        Color color = Color.decode(Objects.requireNonNull(getConfig().getString("discordBotEmbeds.errors.codeNotExists.color")));
+
+        embed.setTitle(title);
+        embed.setColor(color);
+        for(String line : description){
+            embed.appendDescription(line + "\n");
+        }
+
+        return embed;
+    }
+
+    public static EmbedBuilder nicknameAlreadyLinked(){
+        EmbedBuilder embed = new EmbedBuilder();
+        String title = getConfig().getString("discordBotEmbeds.errors.nicknameAlreadyLinked.title");
+        List<String> description = getConfig().getStringList("discordBotEmbeds.errors.nicknameAlreadyLinked.description");
+        Color color = Color.decode(Objects.requireNonNull(getConfig().getString("discordBotEmbeds.errors.nicknameAlreadyLinked.color")));
+
+        embed.setTitle(title);
+        embed.setColor(color);
+        for(String line : description){
+            embed.appendDescription(line + "\n");
+        }
+
+        return embed;
+    }
+
+    public static EmbedBuilder nicknameLinked(){
+        EmbedBuilder embed = new EmbedBuilder();
+        String title = getConfig().getString("discordBotEmbeds.code.title");
+        List<String> description = getConfig().getStringList("discordBotEmbeds.code.description");
+        Color color = Color.decode(Objects.requireNonNull(getConfig().getString("discordBotEmbeds.code.color")));
 
         embed.setTitle(title);
         embed.setColor(color);
@@ -80,10 +125,10 @@ public class discordEmbeds {
 
     private static String nicknameReplace(String id){
         try{
-            if(!getDatabase().checkDiscord(id)){ return "unknown"; }
+            if(!getDatabase().checkDiscord(id)){ return "[NOT LINKED]"; }
             return getDatabase().getNicknameByDiscordID(id);
         }catch(SQLException e) { e.printStackTrace(); }
-        return "error";
+        return "[ERROR]";
     }
 
     private static FileConfiguration getConfig() { return QWhitelist.getInstance().getConfig(); }

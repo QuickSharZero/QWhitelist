@@ -29,12 +29,13 @@ public class discordBotCommands extends ListenerAdapter{
                 String nickname = event.getOption("nickname", OptionMapping::getAsString);
                 try{
                     if(getDatabase().checkDiscord(senderID)){
-                        event.replyEmbeds(discordEmbeds.playDiscordAlreadyExists().build())
+                        event.replyEmbeds(discordEmbeds.discordAlreadyExists().build())
                                 .setEphemeral(true)
                                 .queue();
                         return;
-                    } else if (getDatabase().checkPlayer(nickname)) {
-                        event.replyEmbeds(discordEmbeds.playNicknameAlreadyExists().build())
+                    }
+                    if(getDatabase().checkPlayer(nickname)) {
+                        event.replyEmbeds(discordEmbeds.nicknameAlreadyExists().build())
                                 .setEphemeral(true)
                                 .queue();
                         return;
@@ -46,6 +47,35 @@ public class discordBotCommands extends ListenerAdapter{
                             .queue();
 
                 }catch (SQLException e){ e.printStackTrace();}
+                break;
+            }
+            case "code":{
+                Integer code = event.getOption("code", OptionMapping::getAsInt);
+                try {
+                    if(getDatabase().checkDiscord(senderID)){
+                        event.replyEmbeds(discordEmbeds.discordAlreadyExists().build())
+                                .setEphemeral(true)
+                                .queue();
+                        return;
+                    }
+                    if(!getDatabase().checkCode(code)) {
+                        event.replyEmbeds(discordEmbeds.codeNotExists().build())
+                                .setEphemeral(true)
+                                .queue();
+                        return;
+                    }
+                    if(getDatabase().checkNicknameLinkedByCode(code)){
+                        event.replyEmbeds(discordEmbeds.nicknameAlreadyLinked().build())
+                                .setEphemeral(true)
+                                .queue();
+                        return;
+                    }
+                    getDatabase().setDiscordIDByCode(code, senderID);
+                    event.replyEmbeds(discordEmbeds.nicknameLinked().build())
+                            .setEphemeral(true)
+                            .queue();
+                    return;
+                }catch(SQLException e) { e.printStackTrace(); }
                 break;
             }
             default: {event.reply("I can't handle that command right now :(").setEphemeral(true).queue();}

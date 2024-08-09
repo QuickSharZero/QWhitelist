@@ -73,7 +73,9 @@ public final class QWhitelist extends JavaPlugin {
         }catch(SQLException e){
             e.printStackTrace();
         }
-        discordBot.shutdownDiscordBot();
+        if(getConfig().getBoolean("discordBot.enabled")){
+            discordBot.shutdownDiscordBot();
+        }
         getLogger().info("=========================");
         getLogger().info("QWhitelist disabled!");
         getLogger().info("=========================");
