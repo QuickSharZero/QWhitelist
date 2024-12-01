@@ -62,7 +62,7 @@ public final class QWhitelist extends JavaPlugin {
 
         getLogger().info("=========================");
         getLogger().info("QWhitelist enabled!");
-        getLogger().info("Version: " + this.getPluginMeta().getVersion());
+        getLogger().info("Version: " + this.getDescription().getVersion());
         getLogger().info("=========================");
     }
 

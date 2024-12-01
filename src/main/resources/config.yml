@@ -80,7 +80,7 @@ messages:
     DiscordNotSpec: "&cYou did not provide a Discord ID"
     NoDiscord: "&cThis Discord ID is not in the database"
     NewNickNotSpec: "&cYou did not specify a new player nickname"
-    NotWhitelist: "&cYou are not on the whitelist"
+    NotWhitelist: "&cYou are not whitelisted on this server!"
 
   code:
     sucOwnCode: "&aYour code: "
