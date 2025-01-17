@@ -1,7 +1,7 @@
 ## About the plugin:
 **QWhitelist** is a plugin for a whitelist of players who can connect to the server. The plugin uses the player's name to verify the player.
 ## Plugin features:
-- In the plugin config you can configure the connection to your database. **(By default, the plugin connects to the database in the plugin folder.)**
+- In the plugin config you can configure the connection to your database. **(By default, the plugin connects to the database in the plugin folder)**
 - The plugin stores all names in a database.
 - Your own discord bot which can be configured in the config file.
 - Full customization of activity and messages sent by the bot.
@@ -29,7 +29,7 @@
 ## О плагине:
 **QWhitelist** это плагин для белого списка игроков, которые могут подключаться к серверу. Плагин использует имя игрока для проверки игрока.
 ## Особенности:
-- В конфиге плагина вы можете настроить подключение к вашей базе данных. **(По умолчанию плагин подключается к базе данных в папке плагина.)**
+- В конфиге плагина вы можете настроить подключение к вашей базе данных. **(По умолчанию плагин подключается к базе данных в папке плагина)**
 - Плагин сохраняет все имена в базе данных.
 - Ваш собственный Discord бот которого можно настроить в конфиг файле.
 - Полная настройка активнасти и сообщений отправляемых ботом.
