@@ -4,6 +4,8 @@ version: 0.2
 # false - means that the plugin whitelist is disabled
 enable: false
 
+# Sends the function execution status to the console
+debug: false
 
 # You can choose which database to use from the plugin or your own.
 # enable: false - means that the plugin will use its database created in the plugin folder
@@ -21,6 +23,10 @@ database:
 discordBot:
   enabled: false
   token: "YOUR TOKEN"
+  # Allows you to grant a role after adding a user to the whitelist
+  role:
+    addRole: false
+    roleID: ""
   # Activity: "WATCHING", "PLAYING", "NOTHING"
   # "NOTHING" - does not output anything
   activity: "WATCHING"
@@ -49,6 +55,11 @@ discordBotEmbeds:
     description:
       - "Nickname successfully linked."
   errors:
+    addRoleError:
+      color: "#FF0000" # HEX color only
+      title: "Error"
+      description:
+        - "Failed to issue role."
     discordAlreadyExists:
       color: "#FF0000" # HEX color only
       title: "Error"
@@ -87,7 +98,7 @@ messages:
     sucOtherCode: "&a%p code: "  # %p is the nickname of the player whose code you want to receive. (It only works here)
 
   qwhitelist:
-    sucRemove: "&aThe player has been successfully removed from the white list"
+    sucRemove: "&aThe player has been successfully removed from the whitelist"
     sucAdd: "&aThe player has been successfully added to the whitelist"
     sucUpdate: "&aNickname successfully changed"
     sucReload: "&aConfig has been successfully updated"

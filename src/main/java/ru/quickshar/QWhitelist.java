@@ -86,4 +86,9 @@ public final class QWhitelist extends JavaPlugin {
 
     public Database getDatabase(){ return database; }
 
+    public void debug(String message){
+        if (getConfig().getBoolean("debug")) {
+            getLogger().warning(message);
+        }
+    }
 }

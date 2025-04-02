@@ -93,6 +93,21 @@ public class discordEmbeds {
         return embed;
     }
 
+    public static EmbedBuilder addRoleError(){
+        EmbedBuilder embed = new EmbedBuilder();
+        String title = getConfig().getString("discordBotEmbeds.errors.addRoleError.title");
+        List<String> description = getConfig().getStringList("discrodBotEmbeds.errors.addRoleError.description");
+        Color color = Color.decode(Objects.requireNonNull(getConfig().getString("discordBotEmbeds.errors.addRoleError.color")));
+
+        embed.setTitle(title);
+        embed.setColor(color);
+        for(String line : description){
+            embed.appendDescription(line + "\n");
+        }
+
+        return embed;
+    }
+
     public static EmbedBuilder nicknameAlreadyLinked(){
         EmbedBuilder embed = new EmbedBuilder();
         String title = getConfig().getString("discordBotEmbeds.errors.nicknameAlreadyLinked.title");
